@@ -80,7 +80,7 @@ export class SurveyComponent implements OnInit {
         this.days = numberDays;
         const numDays = this.days > 3 ? this.days : 'quelques';
         // tslint:disable-next-line:max-line-length
-        this.endMessage = `Merci pour votre réponse. Vous serez contacté dans un délai de ${numDays} jours par un de nos conseillers !`;
+        this.endMessage = `Merci ! Vous serez contacté dans un délai de ${numDays} jours par un de nos conseillers !`;
         // this.service.isEnd = true;
         this.valeur = 3;
       }

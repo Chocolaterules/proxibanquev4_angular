@@ -1,68 +1,92 @@
-<ng-container [ngSwitch]="valeur">
-  <ng-container *ngSwitchDefault>
-    <h1>Voudriez-vous adhérer à un service d'assurance automobile Proxibanque ?</h1>
-    <div class="icons">
-      <!-- Penser à désactiver/faire disparaître les icones -->
-      <!-- <img class="icon green" src="./assets/yes.svg" (click)="positive()"> -->
-      <i class="material-icons" (click)="positive()" id="ok">thumb_up</i>
-      <i class="material-icons" (click)="negative()" id="ko">thumb_down</i>
-      <!-- <img class="icon red" src="./assets/no.svg" (click)="negative()"> -->
-    </div>
-  </ng-container>
-
-  <div>
-    <!-- Partie pour le commentaire positif-->
-    <ng-container *ngSwitchCase="1">
-      <div class="container flex">
-        <div class="form-left">
-          <h2>Déjà client ? Veuillez saisir votre identifiant client à 8 chiffres</h2>
-          <form (ngSubmit)="checkClient(posCom)" #posCom="ngForm">
-            <label for="clientNum">Votre identifiant client :</label>
-            <input type="text" [(ngModel)]="modelClient.clientNum" id="clientNum" name="clientNum" class="form-control"
-              required>
-            <button class="btn btn-success" [disabled]="posCom.invalid">Valider</button>
-          </form>
-          <ng-container *ngIf="!oldClientOk">
-            Identifiant invalide. Veuillez saisir un numero valide.
-          </ng-container>
+<div class="background">
+  <div class="survey-content">
+    <ng-container [ngSwitch]="valeur">
+      <ng-container *ngSwitchDefault>
+        <div class="title">
+          <h1>Voudriez-vous adhérer à un service d'assurance automobile Proxibanque ?</h1>
         </div>
-
-        <div class="form-right">
-          <h2>Nouveau client ? Veuillez saisir les informations suivantes</h2>
-          <form (ngSubmit)="validateAndSend(newCli)" #newCli="ngForm">
-            <label for="lastName">Nom :</label>
-            <input type="text" [(ngModel)]="modelClient.lastName" id="lastName" name="lastName" class="form-control"
-              required>
-            <label for="firstName">Prénom :</label>
-            <input type="text" [(ngModel)]="modelClient.firstName" id="firstName" name="firstName" class="form-control"
-              required>
-            <label for="telNum">Numéro de téléphone :</label>
-            <input type="text" [(ngModel)]="modelClient.telNum" id="telNum" name="telNum" class="form-control">
-            <label for="email">Email :</label>
-            <input type="email" [(ngModel)]="modelClient.email" id="email" name="email" class="form-control">
-            <button class="btn btn-success" [disabled]="newCli.invalid">Valider</button>
-          </form>
-          <ng-container *ngIf="!newClientOk">
-            Veuillez saisir au moins un numéro de téléphone ou une adresse mail.
-          </ng-container>
+        <div class="icons">
+          <!-- Penser à désactiver/faire disparaître les icones -->
+          <!-- <img class="icon green" src="./assets/yes.svg" (click)="positive()"> -->
+          <i class="material-icons" (click)="positive()" id="ok">thumb_up</i>
+          <i class="material-icons" (click)="negative()" id="ko">thumb_down</i>
+          <!-- <img class="icon red" src="./assets/no.svg" (click)="negative()"> -->
         </div>
+      </ng-container>
+
+      <!-- Partie pour le commentaire positif-->
+      <div>
+        <ng-container *ngSwitchCase="1">
+          <div class="container">
+            <div class="form-left">
+              <h4>Déjà client ? Veuillez saisir votre identifiant client à 8 chiffres</h4>
+              <form (ngSubmit)="checkClient(posCom)" #posCom="ngForm">
+                <label for="clientNum">Votre identifiant client :</label>
+                <input type="text" [(ngModel)]="modelClient.clientNum" id="clientNum" name="clientNum" class="form-control"
+                  required>
+                <button class="btn btn-success" [disabled]="posCom.invalid">Valider</button>
+              </form>
+              <ng-container *ngIf="!oldClientOk">
+                Identifiant invalide. Veuillez saisir un numero valide.
+              </ng-container>
+            </div>
+
+            <div class="form-right">
+              <h4>Nouveau client ? Veuillez saisir les informations suivantes</h4>
+              <form (ngSubmit)="validateAndSend(newCli)" #newCli="ngForm">
+                <label for="lastName">Nom :</label>
+                <input type="text" [(ngModel)]="modelClient.lastName" id="lastName" name="lastName" class="form-control"
+                  required>
+                <label for="firstName">Prénom :</label>
+                <input type="text" [(ngModel)]="modelClient.firstName" id="firstName" name="firstName" class="form-control"
+                  required>
+                <label for="telNum">Numéro de téléphone :</label>
+                <input type="text" [(ngModel)]="modelClient.telNum" id="telNum" name="telNum" class="form-control">
+                <label for="email">Email :</label>
+                <input type="email" [(ngModel)]="modelClient.email" id="email" name="email" class="form-control">
+                <button class="btn btn-success" [disabled]="newCli.invalid">Valider</button>
+              </form>
+              <ng-container *ngIf="!newClientOk">
+                Veuillez saisir au moins un numéro de téléphone ou une adresse mail.
+              </ng-container>
+            </div>
+          </div>
+        </ng-container>
+
+
+        <!-- Partie pour le commentaire négatif-->
+        <ng-container *ngSwitchCase="2">
+          <form (ngSubmit)="validateNegCom(negCom)" #negCom="ngForm" class="flex-form">
+            <div class="form-group perso-form">
+              <label for="comment">Laissez-nous votre avis !</label>
+              <textarea type="text" [(ngModel)]="modelAnswer.comment" id="comment" name="comment" class="form-control"></textarea>
+              <button class="btn btn-success">Envoyer</button>
+            </div>
+          </form>
+        </ng-container>
       </div>
-    </ng-container>
 
-
-    <!-- Partie pour le commentaire négatif-->
-    <ng-container *ngSwitchCase="2">
-      <form (ngSubmit)="validateNegCom(negCom)" #negCom="ngForm">
-        <div class="form-group">
-          <label for="comment">Commentaire :</label>
-          <textarea type="text" [(ngModel)]="modelAnswer.comment" id="comment" name="comment" class="form-control"></textarea>
-          <button class="btn btn-success">Envoyer le commentaire</button>
+      <ng-container *ngSwitchCase="3">
+        <div class="end-content">
+          <h3>{{endMessage}}</h3>
         </div>
-      </form>
+      </ng-container>
     </ng-container>
   </div>
+</div>
 
-  <ng-container *ngSwitchCase="3">
-    <h3>{{endMessage}}</h3>
-  </ng-container>
-</ng-container>
+
+<!--
+  class="form-group"
+  class="form-control"
+  <form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Favorite food" value="Sushi">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <textarea matInput placeholder="Leave a comment"></textarea>
+  </mat-form-field>
+</form>
+
+-->

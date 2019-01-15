@@ -1,13 +1,13 @@
+
 .icons{
     display:flex; 
     flex-direction: row;
-    justify-content: space-evenly;
-    width: 99vw;
+    justify-content: space-around;
 
 }
 
 i {
-    font-size: 15em;
+    font-size: 12em;
     cursor: pointer;
     text-align: center;
     width: auto;
@@ -24,6 +24,64 @@ i {
 
 h1 {
     text-align: center;
-    margin:50px;
-    margin-bottom: 200px;
+    margin-bottom: 2em;
+    margin-top: 1em;
+    margin-left: 0;
+    margin-right: à;
+}
+
+.background{
+    background: linear-gradient(#e59600, #c28e0a);
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.survey-content{
+    background-color: rgba(255, 255, 255, .6);
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px 1px;
+    display: inline-block;
+}
+
+.flex-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.perso-form{
+    width: 80%;
+    height: 100%;
+}
+.perso-form > label {
+    width: 35vw;
+}
+div.perso-form > button {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3em;
+    display: block;
+}
+
+div.perso-form > label {
+    font-size: 1.5em;
+}
+
+.end-content{
+    padding: 225px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.title {
+    width: 90%;
+    margin: 0 auto;
 }
