@@ -11,7 +11,9 @@ import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
-
+/**
+   * Module racine de l'application.
+   */
 @NgModule({
   declarations: [
     AppComponent,

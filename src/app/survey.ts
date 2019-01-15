@@ -1,5 +1,7 @@
 import { Answer } from './answer';
-
+/**
+ * Classe modélisant un sondage de l'application.
+ */
 export class Survey {
 
     id: number;

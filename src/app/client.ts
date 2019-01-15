@@ -1,3 +1,6 @@
+/**
+ * Classe modélisant un client de Proxibanque.
+ */
 export class Client {
     id: number;
     firstName: string;
