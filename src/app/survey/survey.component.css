@@ -1,0 +1,29 @@
+.icons{
+    display:flex; 
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 99vw;
+
+}
+
+i {
+    font-size: 15em;
+    cursor: pointer;
+    text-align: center;
+    width: auto;
+    height: auto;
+}
+
+#ok{
+    color: green;
+}
+
+#ko {
+    color: red;
+}
+
+h1 {
+    text-align: center;
+    margin:50px;
+    margin-bottom: 200px;
+}
