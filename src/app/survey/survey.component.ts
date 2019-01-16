@@ -106,7 +106,7 @@ export class SurveyComponent implements OnInit {
         this.days = numberDays;
         const numDays = this.days > 1 ? this.days : 'quelques';
         // tslint:disable-next-line:max-line-length
-        this.endMessage = `Merci ! Vous serez contacté dans un délai de ${numDays} jours par un de nos conseillers !`;
+        this.endMessage = `Merci ! Vous serez contacté dans un délai de ${numDays} jours par un de nos conseillers experts en assurance auto !`;
         this.valeur = 3;
       }
     );
