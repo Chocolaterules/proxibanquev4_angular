@@ -28,7 +28,7 @@ export class GlobalService {
   }
 
   /**
-   * Methode permettant d'interroger le WebService pour récupérer le sondage en cours.
+   * Méthode permettant d'interroger le WebService pour récupérer le sondage en cours.
    * @returns Observable<Survey> L'observable pour le sondage en cours.
    */
   public getCurrSurvey(): Observable<Survey> {
@@ -36,7 +36,7 @@ export class GlobalService {
   }
 
   /**
-   * Methode permettant d'interroger le WebService pour persister une réponse d'un client en BDD.
+   * Méthode permettant d'interroger le WebService pour persister une réponse d'un client en BDD.
    * @returns Observable<Survey> L'observable pour la réponse sauvegardée en BDD.
    */
   public createAnswer(answer: Answer): Observable<Answer> {
@@ -45,7 +45,7 @@ export class GlobalService {
   }
 
   /**
-   * Methode permettant d'interroger le WebService pour sauvegarder un nouveau client en BDD.
+   * Méthode permettant d'interroger le WebService pour sauvegarder un nouveau client en BDD.
    * @returns Observable<Survey> L'observable pour le client nouvellement enregistré.
    */
   public createClient(client: Client): Observable<Client> {
@@ -54,7 +54,7 @@ export class GlobalService {
   }
 
   /**
-   * Methode permettant d'interroger le WebService pour récupérer un client à partir de son identifiant à 8 chiffres.
+   * Méthode permettant d'interroger le WebService pour récupérer un client à partir de son identifiant à 8 chiffres.
    * @returns Observable<Survey> L'observable pour le client récupéré depuis la BDD.
    */
   public readClientNum(clientNum: string): Observable<Client> {
@@ -62,8 +62,8 @@ export class GlobalService {
   }
 
   /**
-   * Methode permettant d'interroger le WebService pour récupérer le nombre de jours entre la fin d'un sondage et la date du jour.
-   * @returns Observable<Survey> L'observable pour le nombre de jours sous forme d'entier.
+   * Méthode permettant d'interroger le WebService pour récupérer le nombre de jours entre la fin d'un sondage et la date du jour.
+   * @returns Observable<Survey> L'observable pour le nombre de jours sous forme de nombre.
    */
   public getDays(): Observable<number> {
     return this.httpClient.get<number>(this.surveyUrl + '/date');

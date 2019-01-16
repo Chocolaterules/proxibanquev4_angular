@@ -20,12 +20,15 @@ export class AppComponent implements OnInit {
     this.valeur = 0;
     this.currSurvey = new Survey(undefined, undefined, undefined, undefined);
   }
-
+/**
+ * Méthode effectuée à l'initialisation pour récupérer le sondage en cours.
+ */
   ngOnInit() {
     this.service.getCurrSurvey().subscribe(
       (s) => {
         console.log(s);
-        // Si le WebService renvoie bien un sondage, on le stocke dans currSruvey. valeur = 1 gère l'affichage du sondage.
+        // Si le WebService renvoie bien un sondage, on le stocke dans currSurvey.
+        // valeur = 1 gère l'affichage du sondage.
         if (s !== null) {
           this.valeur = 1;
           this.currSurvey = new Survey(s.id, s.startDate, s.tempEndDate, s.endDate);

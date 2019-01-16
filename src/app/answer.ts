@@ -1,6 +1,8 @@
 import { Client } from './client';
 import { Survey } from './survey';
-
+/**
+ * Classe modélisant une réponse au sondage de l'application.
+ */
 export class Answer {
     id: number;
     isPositive: boolean;

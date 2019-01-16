@@ -5,7 +5,7 @@ import { Survey } from '../survey';
 import { NgForm } from '@angular/forms';
 import { Client } from '../client';
 /**
- * COmposant utilisé pour afficher les formulaires d'enregistrement des commentaires postés par les utilisateurs.
+ * Composant utilisé pour afficher les formulaires d'enregistrement des commentaires postés par les utilisateurs.
  */
 @Component({
   selector: 'app-survey',
@@ -36,18 +36,22 @@ export class SurveyComponent implements OnInit {
   ngOnInit() {
   }
 
-
+/**
+ * Méthode fixant la variable valeur à 1 pour afficher le formulaire d'enregistrement du client après un avis positif.
+ */
   positive() {
     this.valeur = 1;
   }
 
-
+/**
+ * Méthode fixant la variable valeur à 2 pour afficher le formulaire d'enregistrement du commentaire après un avis négatif.
+ */
   negative() {
     this.valeur = 2;
   }
 
   /**
-   * Methode permettant d'enregistrer un commentaire négatif pour le sondage en cours.
+   * Méthode permettant d'enregistrer un commentaire négatif pour le sondage en cours.
    * @param myForm Le formulaire d'enregistrement du commentaire.
    */
   validateNegCom(myForm: NgForm) {
@@ -63,18 +67,17 @@ export class SurveyComponent implements OnInit {
     this.service.createAnswer(newAnswer).subscribe(
       (answerFromJee) => {
         if (answerFromJee.id != null) {
-          // tslint:disable-next-line:max-line-length
-          // Une fois que le servuer a renvoyé la réponse enregistrée en BDD avec un id, on bascule sur l'affichage du message de remerciement
-          // avec valeur = 3.
+          // Une fois que le serveur a renvoyé la réponse enregistrée en BDD avec un id,
+          // on bascule sur l'affichage du message de remerciement en fixant valeur = 3.
           this.endMessage = 'Merci pour votre participation !';
           this.valeur = 3;
         }
       });
   }
-  /**
-     * Methode permettant d'enregistrer un commentaire positif pour le sondage en cours.
-     * @param myForm Le formulaire d'enregistrement du commentaire.
-     */
+ /**
+  * Méthode permettant d'enregistrer un avis positif pour le sondage en cours.
+  * @param id L'identifiant du client qui a laissé l'avis positif.
+  */
   validatePosCom(id: number) {
     // Création d'une nouvelle réponse avec l'id du sondage en cours.
     // Obligation de passer par un objet Survey contenant juste un attribut id rempli avec l'id du sondage en cours
@@ -94,8 +97,8 @@ export class SurveyComponent implements OnInit {
       });
   }
   /**
-   * Methode utilisant le webService pour connaitre le nombre de jours restants avant la fin prévisionnelle du sondage en cours.
-   * Si le nombre de jours restant vaut 1 ou 0, affichage de "quelques jours" à l'utilisateur au lieu de "0/1 jours"
+   * Méthode utilisant le webService pour connaitre le nombre de jours restants avant la fin prévisionnelle du sondage en cours.
+   * Si le nombre de jours restant est inférieur à 2, affichage de "quelques jours" à l'utilisateur au lieu de "0/1/-n jours".
    */
   setDays() {
     this.service.getDays().subscribe(
@@ -110,8 +113,8 @@ export class SurveyComponent implements OnInit {
   }
 
   /**
-   * Methode permettant d'enregistrer un nouveau client ayant posté un avis positif pour le sondage en cours.
-   * Le client a forcément enregistré soit un email soit un numéro de téléphone (cf validateAndSend())
+   * Méthode permettant d'enregistrer un nouveau client ayant posté un avis positif pour le sondage en cours.
+   * Le client a forcément enregistré soit un email soit un numéro de téléphone (cf validateAndSend()).
    * @param client Le client à sauvegarder en BDD.
    *
    */
@@ -129,24 +132,24 @@ export class SurveyComponent implements OnInit {
     );
   }
   /**
-   * Methode permettant de vérifier si un utilisateur est effectivement un client acutel de la banque
-   * en controllant l'existence de son identifiant à 8 chiffres en BDD. Le formulaire html oblige l'utilisateur à saisir 8 chiffres
+   * Méthode permettant de vérifier si un utilisateur est effectivement un client actuel de la banque
+   * en contrôlant l'existence de son identifiant à 8 chiffres en BDD. Le formulaire html oblige l'utilisateur à saisir 8 chiffres
    * dans ce formulaire.
    * @param myForm Le formulaire d'enregistrement de l'identifiant du client.
    */
   checkClient(myForm: NgForm) {
-    // Réupération de l'identifiant à 8 chiffres enregistré dans le formulaire au moment de la validation.
+    // Récupération de l'identifiant à 8 chiffres enregistré dans le formulaire au moment de la validation.
     const cliNum = this.modelClient.clientNum;
     this.service.readClientNum(cliNum).subscribe(
       (cliFromJee) => {
         if (cliFromJee != null) {
-          // Si le WebService a renvoyé le client avec un id. On transmet à l'id à validatePosCom()
-          // pour enregistrer le commentaire de ce client en BDD.
+          // Si le WebService a renvoyé le client avec un id. On transmet l'id à validatePosCom()
+          // pour enregistrer l'avis de ce client en BDD.
           this.oldClientOk = true;
           const cliId = cliFromJee.id;
           this.validatePosCom(cliId);
         } else {
-          // Si le client n'existe pas en BDD on ne valide pas le commentaire
+          // Si le client n'existe pas en BDD on ne valide pas l'avis
           // et affichage d'un message d'erreur à l'utilisateur.
           this.oldClientOk = false;
         }
@@ -154,8 +157,8 @@ export class SurveyComponent implements OnInit {
     );
   }
   /**
-   * Methode de contrôle pour le formulaire d'enregistrement d'un nouveau client. Si le client n'a saisi
-   * ni email ni numero de téléphone, le formulaire n'est pas validé.
+   * Méthode de contrôle pour le formulaire d'enregistrement d'un nouveau client. Si le client n'a saisi
+   * ni email ni numéro de téléphone, le formulaire n'est pas validé.
    * Le nom et le prénom sont par défaut requis dans le formulaire html.
    * @param myForm Le formulaire d'enregistrement d'un nouveau client.
    */

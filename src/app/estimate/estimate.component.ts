@@ -16,7 +16,7 @@ export class EstimateComponent implements OnInit {
   }
 
   /**
-   * Methode permettant la redirection vers Wikipedia lorsque l'utilisateur clique sur le bouton "Par téléphone" ou "Par Email".
+   * Méthode permettant la redirection vers Wikipedia lorsque l'utilisateur clique sur le bouton "Par téléphone" ou "Par Email".
    */
   goToUrl(): void {
     this.document.location.href = 'https://fr.wikipedia.org/';
