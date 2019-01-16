@@ -111,7 +111,7 @@ export class SurveyComponent implements OnInit {
 
   /**
    * Methode permettant d'enregistrer un nouveau client ayant posté un avis positif pour le sondage en cours.
-   * Le client a forcément enregistré soit un email soit un numéro de téléphone.
+   * Le client a forcément enregistré soit un email soit un numéro de téléphone (cf validateAndSend())
    * @param client Le client à sauvegarder en BDD.
    *
    */
@@ -121,31 +121,49 @@ export class SurveyComponent implements OnInit {
     this.service.createClient(newClient).subscribe(
       (clientFromJee) => {
         if (clientFromJee.id != null) {
+          // Si le nouveau client a bien été ajouté en BDD alors
+          // on envoie son id à validatePosCom() pour sauvegarder la réponse liée à ce client.
           this.validatePosCom(clientFromJee.id);
         }
       }
     );
   }
-
+  /**
+   * Methode permettant de vérifier si un utilisateur est effectivement un client acutel de la banque
+   * en controllant l'existence de son identifiant à 8 chiffres en BDD. Le formulaire html oblige l'utilisateur à saisir 8 chiffres
+   * dans ce formulaire.
+   * @param myForm Le formulaire d'enregistrement de l'identifiant du client.
+   */
   checkClient(myForm: NgForm) {
+    // Réupération de l'identifiant à 8 chiffres enregistré dans le formulaire au moment de la validation.
     const cliNum = this.modelClient.clientNum;
     this.service.readClientNum(cliNum).subscribe(
       (cliFromJee) => {
         if (cliFromJee != null) {
+          // Si le WebService a renvoyé le client avec un id. On transmet à l'id à validatePosCom()
+          // pour enregistrer le commentaire de ce client en BDD.
           this.oldClientOk = true;
           const cliId = cliFromJee.id;
           this.validatePosCom(cliId);
         } else {
+          // Si le client n'existe pas en BDD on ne valide pas le commentaire
+          // et affichage d'un message d'erreur à l'utilisateur.
           this.oldClientOk = false;
         }
       }
     );
   }
-
+  /**
+   * Methode de contrôle pour le formulaire d'enregistrement d'un nouveau client. Si le client n'a saisi
+   * ni email ni numero de téléphone, le formulaire n'est pas validé.
+   * Le nom et le prénom sont par défaut requis dans le formulaire html.
+   * @param myForm Le formulaire d'enregistrement d'un nouveau client.
+   */
   validateAndSend(myForm: NgForm): boolean {
     if (!this.modelClient.telNum && !this.modelClient.email) {
       return this.newClientOk = false;
     } else {
+      // Si le client a au moins saisi un numéro de téléphone ou une adresse email, on passe ce client à createClient().
       const newClient = new Client(null, this.modelClient.firstName, this.modelClient.lastName,
         this.modelClient.telNum, this.modelClient.email, null);
       this.createClient(newClient);

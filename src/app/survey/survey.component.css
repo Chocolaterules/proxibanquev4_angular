@@ -65,6 +65,7 @@ h1 {
 .perso-form > label {
     width: 35vw;
 }
+
 div.perso-form > button {
     margin-left: auto;
     margin-right: auto;
@@ -85,4 +86,35 @@ div.perso-form > label {
 .title {
     width: 90%;
     margin: 0 auto;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.form-left{
+    margin: 2em 1em 2em 2em;
+}
+
+.form-right{
+    padding-left: 2em;
+    margin: 2em 2em 2em 1em;
+    border-left: 1px solid darkgray;
+}
+button{
+    margin-top: 1em;
+}
+
+#negCom{
+    width: 40vw;
+    height: 40vh;
+}
+input{
+    margin-bottom: 1em;
+}
+
+#textNeg{
+    width: 60vw;
 }

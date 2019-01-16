@@ -1,6 +1,9 @@
+<!-- la variable valeur vaut 1 s'il y a un sondage en cours-->
 <ng-container *ngIf="valeur === 1">
   <app-survey surveyId={{currSurvey.id}}></app-survey>
 </ng-container>
+
+<!-- valeur vaut 2 s'il n'y a pas de sondage en cours-->
 <ng-container *ngIf="valeur === 2">
   <app-estimate></app-estimate>
 </ng-container>
