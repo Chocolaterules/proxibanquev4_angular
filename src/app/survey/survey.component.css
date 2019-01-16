@@ -16,11 +16,11 @@ i {
 }
 
 #ok{
-    color: green;
+    color: #4CC239;
 }
 
 #ko {
-    color: red;
+    color: #FF4A35;
 }
 
 h1 {
