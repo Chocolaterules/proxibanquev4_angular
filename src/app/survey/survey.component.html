@@ -41,7 +41,7 @@
                 <input type="text" [(ngModel)]="modelClient.firstName" id="firstName" name="firstName" class="form-control"
                   required>
                 <label for="telNum">Numéro de téléphone :</label>
-                <input type="text" [(ngModel)]="modelClient.telNum" id="telNum" name="telNum" class="form-control">
+                <input type="tel" pattern="0[1-7]{1}[0-9]{8}" [(ngModel)]="modelClient.telNum" id="telNum" name="telNum" class="form-control">
                 <label for="email">Email :</label>
                 <input type="email" [(ngModel)]="modelClient.email" id="email" name="email" class="form-control">
                 <button class="btn btn-success" [disabled]="newCli.invalid">Valider</button>
