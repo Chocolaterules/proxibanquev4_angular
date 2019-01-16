@@ -1,5 +1,6 @@
 <h2>Bienvenue dans la partie "front-end" de l'application ProxiBanque</h2>
 
+
 <h4>Installation</h4>
 
 
@@ -19,6 +20,7 @@ npm -v (qui renverra la version du gestionnaire de packages de node.js)
 ng --version (qui renverra notamment la version d'Angular CLI)
 
 Ensuite veuillez copier le fichier "proxibanquev4_angular.war" dans le dossier webapps de votre dossier apache-tomcat-8.5.xx. un eofis la copie terminée, veuillez double cliquer sur le fichier "startup.bat" du dossier bin dans apache-tomcat-8.5.xx
+
 
 <h4>Utilisation</h4>
 
